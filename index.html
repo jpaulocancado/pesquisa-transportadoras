@@ -15,19 +15,40 @@
     <a href="admin.html" class="admin-btn">⚙️ Painel Administrativo</a>
   </div>
 
-  <div class="filtros">
-    <label for="filtroTransportadora">Selecione uma transportadora:</label>
-    <select id="filtroTransportadora">
-      <option value="todas">Todas as transportadoras</option>
-    </select>
-
-    <label for="filtroCidade">Filtrar por cidade:</label>
-    <input
-      type="text"
-      id="filtroCidade"
-      placeholder="Digite o nome da cidade..."
-    />
+  <!-- Seção de Busca por Cidade -->
+  <div class="busca-cidade-section">
+    <h2>🔍 Procurar Transportadoras por Cidade</h2>
+    <div class="busca-container">
+      <input
+        type="text"
+        id="buscaCidade"
+        placeholder="Digite o nome da cidade..."
+        autocomplete="off"
+      />
+      <div id="sugestoesCidades" class="sugestoes-dropdown"></div>
+    </div>
+    <div id="resultadoBusca" class="resultado-busca"></div>
   </div>
+
+  <div class="divider"></div>
+
+  <!-- Filtros Avançados -->
+  <details class="filtros-avancados">
+    <summary>Filtros Avançados</summary>
+    <div class="filtros">
+      <label for="filtroTransportadora">Selecione uma transportadora:</label>
+      <select id="filtroTransportadora">
+        <option value="todas">Todas as transportadoras</option>
+      </select>
+
+      <label for="filtroCidade">Filtrar por cidade:</label>
+      <input
+        type="text"
+        id="filtroCidade"
+        placeholder="Digite o nome da cidade..."
+      />
+    </div>
+  </details>
 
   <div id="resultado"></div>
 </div>
