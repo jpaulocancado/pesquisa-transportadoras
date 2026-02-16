@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Administrativo - Transportadoras</title>
+  <link rel="stylesheet" href="admin-styles.css" />
+</head>
+<body>
+
+<div class="container">
+  <h1>⚙️ Painel Administrativo</h1>
+
+  <div class="header-actions">
+    <a href="index.html" class="btn btn-secondary">← Voltar</a>
+    <button onclick="resetarDados()" class="btn btn-danger">🔄 Resetar Dados</button>
+  </div>
+
+  <div class="admin-panel">
+    <!-- Lista de Transportadoras -->
+    <div class="section">
+      <h2>Transportadoras Cadastradas</h2>
+      <button onclick="abrirModalNova()" class="btn btn-success">➕ Nova Transportadora</button>
+      <div id="listaTransportadoras"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para adicionar/editar transportadora -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <h2 id="modalTitulo">Nova Transportadora</h2>
+
+    <form id="formTransportadora" onsubmit="salvarTransportadora(event)">
+      <div class="form-group">
+        <label for="nome">Nome da Transportadora:</label>
+        <input type="text" id="nome" required />
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone (WhatsApp):</label>
+        <input type="text" id="telefone" placeholder="34991234567" required />
+      </div>
+
+      <div class="form-group">
+        <label for="freteBase">Frete Base:</label>
+        <input type="text" id="freteBase" placeholder="R$ 50,00" required />
+      </div>
+
+      <div class="form-group">
+        <label for="prazoBase">Prazo Base:</label>
+        <input type="text" id="prazoBase" placeholder="24 horas" required />
+      </div>
+
+      <div class="form-group">
+        <label>Cidades Atendidas:</label>
+        <div class="cidade-input-group">
+          <input type="text" id="novaCidade" placeholder="Nome da cidade" />
+          <button type="button" onclick="adicionarCidade()" class="btn btn-primary">Adicionar</button>
+        </div>
+        <div id="listaCidades" class="tags-container"></div>
+      </div>
+
+      <!-- Configurações avançadas de frete e prazo por cidade -->
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="configuracaoAvancada" onchange="toggleConfiguracaoAvancada()" />
+          Configurar fretes e prazos específicos por cidade
+        </label>
+      </div>
+
+      <div id="configuracaoAvancadaSection" style="display: none;">
+        <div class="form-group">
+          <label>Selecione uma cidade para configurar:</label>
+          <select id="cidadeParaConfigurar" onchange="mostrarConfigCidade()">
+            <option value="">Selecione uma cidade</option>
+          </select>
+        </div>
+
+        <div id="configCidadeForm" style="display: none;">
+          <div class="form-group">
+            <label>Frete para a cidade selecionada:</label>
+            <input type="text" id="freteCidade" placeholder="R$ 70,00" />
+          </div>
+
+          <div class="form-group">
+            <label>Prazo para a cidade selecionada:</label>
+            <input type="text" id="prazoCidade" placeholder="48 horas" />
+          </div>
+
+          <button type="button" onclick="salvarConfigCidade()" class="btn btn-primary">
+            Salvar Configuração
+          </button>
+        </div>
+
+        <div id="configuracoesAtivas"></div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">💾 Salvar</button>
+        <button type="button" onclick="fecharModal()" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>
